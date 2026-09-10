@@ -162,6 +162,17 @@
     .marquee{-webkit-mask-image:none;mask-image:none}}
 
   /* profissionais por demanda */
+  .pd-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--ink)}
+  .pd{padding:16px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:170px 1fr;
+    gap:14px;font-size:.95rem;align-items:baseline}
+  .pd:nth-child(odd){padding-right:32px}
+  .pd:nth-child(even){padding-left:32px;border-left:1px solid var(--line)}
+  .pd b{font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--ink)}
+  .pd span{color:var(--muted)}
+  @media(max-width:860px){.pd-grid{grid-template-columns:1fr}
+    .pd:nth-child(odd){padding-right:0}.pd:nth-child(even){padding-left:0;border-left:0}
+    .pd{grid-template-columns:1fr;gap:3px}}
+
   .pd-cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .pd-nota{margin-top:26px;padding:20px 24px;background:#fff;border:1px solid var(--line);
     font-size:.92rem;color:var(--muted);max-width:78ch}
@@ -343,14 +354,14 @@
   <div class="wrap grid">
     <div>
       <span class="lbl">Supply · Operações · Sourcing</span>
-      <h1>Inteligência de mercado aliada à tecnologia.</h1>
+      <h1>A cadeia de suprimentos como vantagem competitiva.</h1>
       <p class="sub">
-        Atuamos em suprimentos, operações e sourcing. Levantamos o processo atual, medimos
-        custo e tempo por etapa, apoiamos a negociação com referência de preço e entregamos as
-        planilhas e relatórios que a equipe passa a usar na rotina.
+        Redesenhamos operações, sourcing e supply chain para proteger margem. Processos com
+        critério de decisão escrito, governança definida e instrumentos que a sua equipe opera
+        sem depender de nós.
       </p>
       <div class="acts">
-        <a class="btn btn-p" href="#contato">Agendar uma conversa de 30 minutos</a>
+        <a class="btn btn-p" href="#contato">Agendar diagnóstico operacional</a>
         <a class="btn btn-s" href="#metodo">Como trabalhamos</a>
       </div>
     </div>
@@ -390,8 +401,8 @@
       <span class="t">setores em que atuamos</span>
     </div>
     <div>
-      <span class="n">Excel</span>
-      <span class="t">formato em que os entregáveis são fornecidos</span>
+      <span class="n">Aberto</span>
+      <span class="t">formato dos instrumentos entregues, sem licença</span>
     </div>
     <div>
       <span class="n">Mensal</span>
@@ -408,67 +419,26 @@
         <span class="lbl g">Profissionais por demanda</span>
         <h2 style="margin-top:10px">Contrate pelo tempo que precisar</h2>
         <p>Especialistas em supply, compras, sourcing e operações alocados na medida da
-        necessidade, sem a contratação de uma estrutura permanente. O profissional pode atuar
-        de forma dedicada ou compartilhada entre clientes, conforme o escopo e a carga horária
-        contratada.</p>
+        necessidade, dedicados ou compartilhados, sem estrutura permanente.</p>
       </div>
       <a class="lnk" href="#contato">Solicitar um profissional</a>
     </div>
 
-    <table class="tb">
-      <thead>
-        <tr><th>Formato</th><th>Carga</th><th>Uso mais frequente</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="nm">Por hora</span></td>
-          <td><span class="ex">4h, 8h ou 20h por m&ecirc;s</span></td>
-          <td>Demanda pontual: uma an&aacute;lise, uma rodada de cota&ccedil;&atilde;o, a revis&atilde;o de um contrato.</td>
-        </tr>
-        <tr>
-          <td><span class="nm">Por dia</span></td>
-          <td><span class="ex">1 ou mais dias por semana</span></td>
-          <td>Acompanhamento de rotina com presen&ccedil;a definida na agenda da equipe.</td>
-        </tr>
-        <tr>
-          <td><span class="nm">Part-time</span></td>
-          <td><span class="ex">2 ou 3 dias por semana</span></td>
-          <td>Condu&ccedil;&atilde;o de uma frente cont&iacute;nua, como a carteira de compras de uma categoria.</td>
-        </tr>
-        <tr>
-          <td><span class="nm">Mensal</span></td>
-          <td><span class="ex">Carga hor&aacute;ria recorrente</span></td>
-          <td>Sustenta&ccedil;&atilde;o de processo j&aacute; implantado, com volume previs&iacute;vel de trabalho.</td>
-        </tr>
-        <tr>
-          <td><span class="nm">Projeto</span></td>
-          <td><span class="ex">Escopo, prazo e entrega definidos</span></td>
-          <td>Implanta&ccedil;&atilde;o de um recorte espec&iacute;fico, com entreg&aacute;veis acordados no in&iacute;cio.</td>
-        </tr>
-        <!-- TROCAR: confirmar a redacao desta linha com o juridico antes de publicar -->
-        <tr>
-          <td><span class="nm">Cobertura de per&iacute;odo</span></td>
-          <td><span class="ex">Prazo determinado</span></td>
-          <td>Atendimento da demanda enquanto a posi&ccedil;&atilde;o est&aacute; em aberto ou o titular afastado.</td>
-        </tr>
-        <tr>
-          <td><span class="nm">Compartilhado</span></td>
-          <td><span class="ex">Profissional dividido entre empresas</span></td>
-          <td>Carga parcial em mais de um cliente, com prioridade acordada em contrato.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="pd-nota">
-      A aloca&ccedil;&atilde;o &eacute; feita por contrato de presta&ccedil;&atilde;o de servi&ccedil;os, com escopo, entreg&aacute;veis e
-      carga hor&aacute;ria definidos. A sele&ccedil;&atilde;o, a gest&atilde;o e a substitui&ccedil;&atilde;o do profissional s&atilde;o
-      responsabilidade da M3V.
+    <div class="pd-grid">
+      <div class="pd"><b>Por hora</b><span>4h, 8h ou 20h por mês — demanda pontual</span></div>
+      <div class="pd"><b>Por dia</b><span>1 ou mais dias por semana — acompanhamento de rotina</span></div>
+      <div class="pd"><b>Part-time</b><span>2 ou 3 dias por semana — condução de uma frente</span></div>
+      <div class="pd"><b>Mensal</b><span>carga recorrente — sustentação de processo implantado</span></div>
+      <div class="pd"><b>Projeto</b><span>escopo, prazo e entrega definidos</span></div>
+      <!-- TROCAR: confirmar a redacao desta linha com o juridico antes de publicar -->
+      <div class="pd"><b>Cobertura de período</b><span>posição em aberto ou titular afastado</span></div>
+      <div class="pd"><b>Compartilhado</b><span>profissional dividido entre empresas, com prioridade acordada</span></div>
     </div>
 
-    <div class="pd-cta">
-      <a class="btn btn-p" href="#contato">Solicitar um profissional</a>
-      <a class="btn btn-s" href="#servicos">Ver as frentes de trabalho</a>
-    </div>
+    <p class="muted sm" style="margin:26px 0 0;max-width:76ch">
+      Alocação por contrato de prestação de serviços, com escopo, entregáveis e carga horária
+      definidos. Seleção, gestão e substituição do profissional são responsabilidade da M3V.
+    </p>
   </div>
 </section>
 
@@ -543,8 +513,8 @@
       <div>
         <span class="lbl g">Serviços</span>
         <h2 style="margin-top:10px">Frentes de trabalho</h2>
-        <p>O foco é supply, operações e sourcing. Contratos de RH e terceirização são atendidos
-        na mesma frente de negociação, por serem contratos de serviço recorrente.</p>
+        <p>Sourcing, supply chain e governança de operações. Contratos de RH e terceirização
+        entram na mesma frente de negociação.</p>
       </div>
       <a class="lnk" href="#modelo">Como contratar</a>
     </div>
@@ -558,14 +528,12 @@
         </div>
         <div class="bd">
           <span class="lbl">Frente principal</span>
-          <h3 style="margin:12px 0 10px">Sourcing e negociação de contratos</h3>
+          <h3 style="margin:12px 0 10px">Sourcing estratégico e contratos</h3>
           <p class="muted" style="margin:0 0 16px">
-            Levantamento dos contratos vigentes e das condições praticadas; construção da
-            referência de preço a partir do histórico de compra da empresa e das fontes de
-            mercado disponíveis; e preparação da rodada de negociação — escopo comparável entre
-            fornecedores, faixa-alvo, alternativas de fornecimento e regras de reajuste.
-            Acompanhamos as reuniões quando o cliente solicita. A decisão e a assinatura são
-            do cliente.
+            Referência de preço construída a partir do histórico da empresa e do mercado, antes
+            de qualquer negociação. Escopo comparável entre fornecedores, faixa-alvo e regras de
+            reajuste que preservam o caixa. Acompanhamos a mesa quando o cliente solicita; a
+            decisão e a assinatura são dele.
           </p>
           <a class="lnk" href="#instrumentos">Ver o que é entregue</a>
         </div>
@@ -573,28 +541,29 @@
 
       <div class="col">
         <div class="it">
-          <span class="lbl g">Supply</span>
-          <h4 style="margin-top:8px">Suprimentos, do pedido ao recebimento</h4>
-          <p>Levantamento do fluxo de compra, medição de tempo e custo por etapa e revisão dos
-          pontos de aprovação, do pedido de compra até o recebimento do item.</p>
+          <span class="lbl g">Supply chain</span>
+          <h4 style="margin-top:8px">Supply chain de ponta a ponta</h4>
+          <p>Redesenho do fluxo de suprimentos, do pedido ao recebimento, com o custo de cada
+          etapa visível e governança definida sobre quem aprova o quê.</p>
         </div>
         <div class="it">
           <span class="lbl g">Operações</span>
-          <h4 style="margin-top:8px">Medição e revisão de processos</h4>
-          <p>Medição do processo em operação, identificação de retrabalho e registro por escrito
-          dos critérios de decisão e dos responsáveis por cada etapa.</p>
+          <h4 style="margin-top:8px">Governança de operações</h4>
+          <p>Diagnóstico e reestruturação de processos: gargalos identificados, retrabalho
+          eliminado, critérios de decisão documentados para que a execução não dependa de quem
+          estava na sala.</p>
         </div>
         <div class="it">
           <span class="lbl g">RH e terceirização</span>
-          <h4 style="margin-top:8px">Contratos de serviço e mão de obra</h4>
-          <p>Revisão de contratos de terceirização, facilities e serviços recorrentes:
-          comparação de escopo, preço por posto ou por chamado e regras de reajuste.</p>
+          <h4 style="margin-top:8px">Contratos de RH e terceirização</h4>
+          <p>Revisão de contratos de terceirização, facilities e serviços recorrentes: escopo
+          comparável, preço por posto e regras de reajuste.</p>
         </div>
         <div class="it">
           <span class="lbl g">Sustentação</span>
-          <h4 style="margin-top:8px">Sustentação dos entregáveis</h4>
-          <p>Atualização periódica das planilhas e relatórios entregues, revisão das fontes de
-          dados e ajuste dos modelos quando o escopo da operação muda.</p>
+          <h4 style="margin-top:8px">Sustentação</h4>
+          <p>Atualização periódica dos instrumentos, revisão das fontes e ajuste dos modelos
+          quando o escopo da operação muda.</p>
         </div>
       </div>
     </div>
@@ -646,32 +615,32 @@
     <div class="head">
       <div>
         <span class="lbl g">Instrumentos</span>
-        <h2 style="margin-top:10px">O que é entregue</h2>
-        <p>Os entregáveis são planilhas e relatórios em formato aberto, com as fontes indicadas
-        e instruções de atualização. Abaixo, os três mais frequentes.</p>
+        <h2 style="margin-top:10px">Instrumentos de decisão</h2>
+        <p>Modelos de gestão prontos para adoção: painéis em formato aberto, integrados à rotina
+        da equipe, com autonomia total após a entrega.</p>
       </div>
     </div>
 
     <div class="inst">
       <div class="c">
         <span class="tp">Monitor de mercado</span>
-        <h4>Série de preços e volumes por item</h4>
-        <p>Consolida preço, volume e origem dos itens acompanhados em uma série histórica,
-        a partir das fontes de mercado disponíveis e dos dados fornecidos pelo cliente.</p>
-        <div class="freq"><span>Atualização mensal</span><span>Formato: Excel</span></div>
+        <h4>Inteligência de preços</h4>
+        <p>Séries históricas de preço, volume e origem, consolidadas de fontes públicas e dos
+        dados da empresa, para antecipar custo.</p>
+        <div class="freq"><span>Atualização mensal</span><span>Formato aberto</span></div>
       </div>
       <div class="c">
         <span class="tp">Painel de cotação</span>
-        <h4>Registro das cotações recebidas</h4>
-        <p>Uma linha por cotação, com fornecedor, item, especificação, preço e data, comparada
-        à referência do período. Mantém o histórico de negociações em um registro único.</p>
+        <h4>Governança de compras</h4>
+        <p>Histórico centralizado de negociações, comparado à referência do período, com
+        rastreabilidade de cada decisão e auditoria em minutos.</p>
         <div class="freq"><span>A cada negociação</span><span>Fonte: dados do cliente</span></div>
       </div>
       <div class="c">
         <span class="tp">Relatório de mercado</span>
-        <h4>Resumo periódico de preço e disponibilidade</h4>
-        <p>Documento curto com as variações observadas no período nos itens acompanhados, as
-        fontes utilizadas e as implicações para as compras seguintes.</p>
+        <h4>Leitura periódica para decisão</h4>
+        <p>O que mudou em preço, origem e disponibilidade no período, com fonte indicada, e a
+        implicação para as compras seguintes.</p>
         <div class="freq"><span>Semanal ou mensal</span><span>Incluído na sustentação</span></div>
       </div>
     </div>
@@ -800,10 +769,9 @@
       <span class="lbl g">A firma</span>
       <h2 style="margin:10px 0 16px">Quem conduz o trabalho</h2>
       <p class="muted">
-        Os projetos são conduzidos pelos sócios, com apoio de analistas alocados por conta.
-        A sociedade reúne experiência executiva em indústria multinacional, com atuação na
-        Europa e na América Latina, e experiência em negociação de contratos de supply e de
-        serviços.
+        Projetos conduzidos diretamente pelos sócios, com proximidade e profundidade analítica.
+        A M3V reúne vivência executiva em indústrias multinacionais e negociação de contratos
+        de grande porte, aplicadas à realidade operacional do mercado brasileiro.
       </p>
       <ul class="roles">
         <li><b>Sourcing e contratos</b><span>Negociação de contratos de supply e de serviços recorrentes.</span></li>
@@ -850,7 +818,7 @@
         Supply, operações e sourcing. Agronegócio, indústria, alimentos, varejo,
         logística e serviços.
       </p>
-      <p class="xs" style="color:#6C7A88">Atendimento em português e inglês · Brasil e Europa</p>
+      <p class="xs" style="color:#6C7A88">Atendimento em português e inglês</p>
     </div>
     <div>
       <h5>Serviços</h5>
