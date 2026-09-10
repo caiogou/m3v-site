@@ -59,7 +59,9 @@
     text-transform:uppercase;color:var(--muted)}
   .menu{display:flex;align-items:center;gap:2px}
   .menu>li{list-style:none;position:relative}
-  .menu>li>a{display:block;padding:12px 15px;font-size:.88rem;color:var(--text)}
+  .menu>li>a{display:block;padding:12px 15px;font-size:.88rem;color:var(--text);white-space:nowrap}
+  @media(max-width:1280px){.menu>li>a{padding:12px 9px;font-size:.84rem}
+    .menu>li>a.cta-nav{margin-left:8px;padding:11px 14px}}
   .menu>li>a:hover{color:var(--navy)}
   .menu .has::after{content:"";display:inline-block;width:5px;height:5px;margin-left:8px;
     border-right:1px solid var(--muted);border-bottom:1px solid var(--muted);
@@ -76,7 +78,7 @@
     font-size:.83rem;letter-spacing:.03em}
   .menu>li>a.cta-nav:hover{background:var(--navy-2);color:#fff}
   .burger{display:none;font-size:1.4rem;line-height:1;padding:8px}
-  @media(max-width:1040px){
+  @media(max-width:1100px){
     .menu{display:none;position:absolute;top:72px;left:0;right:0;background:#fff;
       border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:10px 20px 20px}
     .menu.open{display:flex}
@@ -129,7 +131,8 @@
     .cover div:nth-child(even){border-right:0}}
 
   /* ---------- seções ---------- */
-  section{padding:84px 0}
+  section{padding:84px 0;scroll-margin-top:76px}
+  [id]{scroll-margin-top:76px}
   .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;
     padding-bottom:22px;border-bottom:1px solid var(--ink);margin-bottom:44px}
   .head p{margin:10px 0 0;color:var(--muted);max-width:58ch}
