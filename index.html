@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M3V · Supply, operações e sourcing</title>
+<meta name="description" content="Consultoria de supply, operações e sourcing: processo medido, contrato negociado com referência de preço e o instrumento de decisão instalado na rotina.">
+<meta property="og:title" content="M3V · Supply, operações e sourcing">
+<meta property="og:description" content="Processo medido, critério de decisão escrito e o instrumento que continua rodando. Entrada com escopo fechado.">
+<meta property="og:type" content="website">
+<!-- TROCAR: og:url e og:image quando houver domínio -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300..600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2312233D'/%3E%3Ctext x='16' y='21' font-family='Georgia,serif' font-size='12' fill='%23fff' text-anchor='middle'%3EM3V%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --navy:#12233D; --navy-2:#0F1B2E; --navy-soft:#EDF1F6; --copper:#A9754A;
+    --ink:#111B26; --text:#1F2A35; --muted:#5C6874; --faint:#8A94A0;
+    --line:#E2E5EA; --line-2:#EFF1F4; --bg:#FFFFFF; --bg-2:#F4F6F8;
+    --serif:"Newsreader",Georgia,"Times New Roman",serif;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --wrap:1240px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+    font-size:16.5px;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-.012em;margin:0;color:var(--ink)}
+  h1{font-size:clamp(2.3rem,4vw,3.4rem);line-height:1.08}
+  h2{font-size:clamp(1.6rem,2.4vw,2.15rem);line-height:1.18}
+  h3{font-size:1.22rem;line-height:1.28}
+  h4{font-size:1.02rem;line-height:1.3}
+  p{margin:0 0 1em}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 30px}
+  .lbl{font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--copper)}
+  .lbl.g{color:var(--faint)}
+  .muted{color:var(--muted)}
+  .sm{font-size:.9rem}
+  .xs{font-size:.79rem}
+
+  /* ---------- topo utilitário ---------- */
+  .util{background:var(--navy-2);color:rgba(255,255,255,.72);font-size:.75rem;letter-spacing:.04em}
+  .util .wrap{display:flex;justify-content:space-between;align-items:center;height:38px;gap:16px}
+  .util a{color:#fff;opacity:.85}
+  .util a:hover{opacity:1}
+  .util .r{display:flex;gap:22px;align-items:center}
+  @media(max-width:760px){.util .l{display:none}.util .wrap{justify-content:flex-end}}
+
+  /* ---------- nav ---------- */
+  .nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.97);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{font-family:var(--serif);font-size:1.55rem;letter-spacing:.04em;color:var(--ink);
+    display:flex;align-items:baseline;gap:9px}
+  .brand small{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--muted)}
+  .menu{display:flex;align-items:center;gap:2px}
+  .menu>li{list-style:none;position:relative}
+  .menu>li>a{display:block;padding:12px 15px;font-size:.88rem;color:var(--text)}
+  .menu>li>a:hover{color:var(--navy)}
+  .menu .has::after{content:"";display:inline-block;width:5px;height:5px;margin-left:8px;
+    border-right:1px solid var(--muted);border-bottom:1px solid var(--muted);
+    transform:translateY(-2px) rotate(45deg)}
+  .drop{position:absolute;top:100%;left:0;min-width:290px;background:#fff;
+    border:1px solid var(--line);padding:8px;opacity:0;visibility:hidden;transform:translateY(6px);
+    transition:all .16s ease;box-shadow:0 18px 40px rgba(16,20,19,.09)}
+  .menu>li:hover .drop,.menu>li:focus-within .drop{opacity:1;visibility:visible;transform:none}
+  .drop a{display:block;padding:11px 13px;font-size:.87rem;border-bottom:1px solid var(--line-2)}
+  .drop a:last-child{border-bottom:0}
+  .drop a:hover{background:var(--bg-2)}
+  .drop a span{display:block;font-size:.75rem;color:var(--faint);margin-top:2px}
+  .menu>li>a.cta-nav{margin-left:14px;background:var(--navy);color:#fff;padding:12px 20px;
+    font-size:.83rem;letter-spacing:.03em}
+  .menu>li>a.cta-nav:hover{background:var(--navy-2);color:#fff}
+  .burger{display:none;font-size:1.4rem;line-height:1;padding:8px}
+  @media(max-width:1040px){
+    .menu{display:none;position:absolute;top:72px;left:0;right:0;background:#fff;
+      border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:10px 20px 20px}
+    .menu.open{display:flex}
+    .menu>li>a{padding:14px 4px;border-bottom:1px solid var(--line-2)}
+    .drop{position:static;opacity:1;visibility:visible;transform:none;border:0;box-shadow:none;
+      padding:0 0 0 14px;display:none}
+    .menu>li.mobopen .drop{display:block}
+    .cta-nav{margin:14px 0 0;text-align:center}
+    .burger{display:block}
+  }
+
+  /* ---------- botões ---------- */
+  .btn{display:inline-block;padding:15px 26px;font-size:.86rem;letter-spacing:.03em;
+    border:1px solid transparent;transition:all .18s ease}
+  .btn-p{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .btn-p:hover{background:var(--navy-2);border-color:var(--navy-2)}
+  .btn-s{border-color:var(--line);color:var(--ink);background:#fff}
+  .btn-s:hover{border-color:var(--ink)}
+  .lnk{color:var(--copper);font-size:.86rem;font-weight:500;border-bottom:1px solid rgba(169,117,74,.35);
+    padding-bottom:2px}
+  .lnk:hover{border-color:var(--copper)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:60px 0 54px;border-bottom:1px solid var(--line)}
+  .hero .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+  .hero h1{max-width:15ch;margin:16px 0 20px}
+  .hero .sub{font-size:1.08rem;color:var(--muted);max-width:46ch}
+  .hero .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .feat{border:1px solid var(--line);background:var(--bg-2)}
+  .feat .im{aspect-ratio:16/10;overflow:hidden;background:var(--navy-2)}
+  .feat .im img{width:100%;height:100%;object-fit:cover;filter:grayscale(.3) contrast(1.03)}
+  .feat .bd{padding:22px 24px 26px}
+  .feat .meta{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+  .feat .tp{font-size:.63rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    background:var(--navy);color:#fff;padding:5px 9px}
+  .feat h3{margin-bottom:8px}
+  @media(max-width:960px){.hero .grid{grid-template-columns:1fr;gap:34px}.hero h1{max-width:20ch}}
+
+  /* ---------- faixa de cobertura ---------- */
+  .cover{background:var(--navy);color:#fff}
+  .cover .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .cover div{padding:26px 28px 28px;border-right:1px solid rgba(255,255,255,.14)}
+  .cover div:first-child{padding-left:0}
+  .cover div:last-child{border-right:0}
+  .cover .n{font-family:var(--serif);font-size:1.9rem;line-height:1.1;display:block;margin-bottom:6px}
+  .cover .t{font-size:.83rem;color:rgba(255,255,255,.72)}
+  @media(max-width:860px){.cover .wrap{grid-template-columns:1fr 1fr}
+    .cover div{border-bottom:1px solid rgba(255,255,255,.14);padding-left:0}}
+
+  /* ---------- seções ---------- */
+  section{padding:84px 0}
+  .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;
+    padding-bottom:22px;border-bottom:1px solid var(--ink);margin-bottom:44px}
+  .head p{margin:10px 0 0;color:var(--muted);max-width:58ch}
+  @media(max-width:760px){.head{flex-direction:column;align-items:flex-start;gap:14px}}
+
+  .cases-nota{margin-top:24px;font-size:.88rem;color:var(--faint);max-width:76ch}
+
+  /* faixa de logos */
+  .marquee{margin-top:30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;position:relative;padding:26px 0;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .marquee .track{display:flex;align-items:center;width:max-content;gap:0;
+    animation:mq 34s linear infinite}
+  .marquee:hover .track{animation-play-state:paused}
+  .marquee .logo{display:flex;align-items:center;justify-content:center;height:44px;
+    padding:0 56px;font-family:var(--serif);font-size:1.55rem;letter-spacing:.04em;
+    color:var(--ink);opacity:.72;white-space:nowrap;
+    filter:grayscale(1)}
+  .marquee .logo img{height:32px;width:auto;display:block}
+  .marquee .dup{display:contents}
+  .marquee .sep{width:5px;height:5px;border-radius:50%;background:var(--copper);opacity:.7;flex:none}
+  @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){
+    .marquee .track{animation:none;width:auto;flex-wrap:wrap;justify-content:center}
+    .marquee .track .dup{display:none}
+    .marquee{-webkit-mask-image:none;mask-image:none}}
+
+  /* profissionais por demanda */
+  .pd-cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .pd-nota{margin-top:26px;padding:20px 24px;background:#fff;border:1px solid var(--line);
+    font-size:.92rem;color:var(--muted);max-width:78ch}
+  .tb td .ex{color:var(--text)}
+
+  /* setores */
+  .setores{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+  .setores .s{padding:28px 30px 32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column}
+  .setores .s:nth-child(3n){border-right:0}
+  .setores .s h4{margin:10px 0 8px}
+  .setores .s p{margin:0;font-size:.92rem;color:var(--muted)}
+  .setores .s .trava{margin-top:auto;padding-top:14px;border-top:1px solid var(--line-2);
+    font-size:.82rem;color:var(--faint)}
+  @media(max-width:960px){.setores{grid-template-columns:1fr 1fr}.setores .s:nth-child(3n){border-right:1px solid var(--line)}
+    .setores .s:nth-child(2n){border-right:0}}
+  @media(max-width:640px){.setores{grid-template-columns:1fr}.setores .s{border-right:0!important}}
+
+  /* grade tipo revista */
+  .mag{display:grid;grid-template-columns:1.25fr 1fr;gap:34px}
+  .mag .big{border:1px solid var(--line);display:flex;flex-direction:column}
+  .mag .big .im{aspect-ratio:16/9;overflow:hidden;background:var(--navy-2)}
+  .mag .big .im img{width:100%;height:100%;object-fit:cover;filter:grayscale(.35) contrast(1.04)}
+  .mag .big .bd{padding:30px 32px 34px}
+  .mag .col{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .mag .it{padding:24px 0;border-bottom:1px solid var(--line)}
+  .mag .it h4{margin-bottom:6px}
+  .mag .it p{margin:0;color:var(--muted);font-size:.93rem}
+  @media(max-width:960px){.mag{grid-template-columns:1fr;gap:26px}}
+
+  /* abas do método */
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .tab{padding:16px 24px 15px;font-size:.9rem;color:var(--muted);border-bottom:2px solid transparent;
+    background:none;border-top:0;border-left:0;border-right:0;cursor:pointer;font-family:var(--sans)}
+  .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--copper);font-weight:500}
+  .tab .st{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faint);margin-bottom:3px}
+  .panel{display:none;padding:40px 0 0}
+  .panel.on{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+  .panel .fica{background:var(--bg-2);padding:28px 30px;border-left:2px solid var(--copper)}
+  .panel h3{margin-bottom:12px}
+  @media(max-width:860px){.panel.on{grid-template-columns:1fr;gap:24px}
+    .tab{padding:13px 16px;font-size:.84rem}}
+
+  /* instrumentos */
+  .inst{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+  .inst .c{padding:30px 30px 34px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .inst .c:last-child{border-right:0}
+  .inst .tp{display:inline-block;font-size:.63rem;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;border:1px solid var(--line);padding:5px 9px;color:var(--muted);
+    margin-bottom:18px}
+  .inst .c p{color:var(--muted);font-size:.94rem;margin:10px 0 0}
+  .inst .freq{margin-top:20px;padding-top:14px;border-top:1px solid var(--line-2);
+    font-size:.79rem;color:var(--faint);display:flex;justify-content:space-between;gap:10px}
+  @media(max-width:860px){.inst{grid-template-columns:1fr}.inst .c{border-right:0}}
+
+  /* bases */
+  .bases{background:var(--bg-2)}
+  .tb{width:100%;border-collapse:collapse}
+  .tb th{text-align:left;font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--faint);padding:0 20px 14px 0;border-bottom:1px solid var(--line)}
+  .tb td{padding:22px 20px 22px 0;border-bottom:1px solid var(--line);vertical-align:top;
+    font-size:.95rem;color:var(--muted)}
+  .tb th:nth-child(1),.tb td:nth-child(1){width:22%}
+  .tb th:nth-child(2),.tb td:nth-child(2){width:12%}
+  .tb th:nth-child(3),.tb td:nth-child(3){width:14%}
+  .tb .nm{font-family:var(--serif);font-size:1.14rem;color:var(--ink);display:block}
+  .tb .sb{font-size:.76rem;color:var(--faint)}
+  .pill{display:inline-block;font-size:.63rem;font-weight:600;letter-spacing:.13em;
+    text-transform:uppercase;padding:5px 10px;border:1px solid var(--line);color:var(--muted)}
+  .pill.p{border-color:#C3D1E2;background:var(--navy-soft);color:var(--navy)}
+  @media(max-width:760px){
+    .tb,.tb tbody,.tb tr,.tb td{display:block;width:100%}
+    .tb thead{display:none}
+    .tb tr{border-bottom:1px solid var(--line);padding:18px 0}
+    .tb td{border:0;padding:3px 0}
+  }
+
+  /* modelo */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--ink)}
+  .duo .f{padding:34px 40px 40px;border-right:1px solid var(--line)}
+  .duo .f:last-child{border-right:0;padding-right:0}
+  .duo .f:first-child{padding-left:0}
+  .duo ul{list-style:none;margin:22px 0 0;padding:0}
+  .duo li{font-size:.93rem;color:var(--muted);padding:12px 0;border-top:1px solid var(--line-2)}
+  @media(max-width:860px){.duo{grid-template-columns:1fr}
+    .duo .f{padding:28px 0;border-right:0;border-bottom:1px solid var(--line)}}
+
+  /* firma */
+  .firma{border-top:1px solid var(--line)}
+  .firma .g{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .firma .im{aspect-ratio:5/4;overflow:hidden;background:var(--navy-2)}
+  .firma .im img{width:100%;height:100%;object-fit:cover;filter:grayscale(.4) contrast(1.05)}
+  .firma .roles{margin:26px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+  .firma .roles li{padding:16px 0;border-bottom:1px solid var(--line);display:grid;
+    grid-template-columns:200px 1fr;gap:20px;font-size:.94rem;color:var(--muted)}
+  .firma .roles b{font-weight:500;color:var(--ink)}
+  @media(max-width:960px){.firma .g{grid-template-columns:1fr;gap:30px}
+    .firma .roles li{grid-template-columns:1fr;gap:4px}}
+
+  /* cta final */
+  .final{position:relative;color:#fff;background:var(--navy-2)}
+  .final .bg{position:absolute;inset:0}
+  .final .bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.55) brightness(.42)}
+  .final .bg::after{content:"";position:absolute;inset:0;background:rgba(15,27,46,.84)}
+  .final .in{position:relative;z-index:2;padding:88px 0}
+  .final h2{color:#fff;max-width:22ch}
+  .final p{color:rgba(255,255,255,.75);max-width:56ch;margin-top:14px}
+  .final .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .final .btn-s{background:transparent;border-color:rgba(255,255,255,.4);color:#fff}
+  .final .btn-s:hover{border-color:#fff}
+  .final .btn-p{background:#fff;color:var(--navy-2);border-color:#fff}
+  .final .btn-p:hover{background:#DDE4EC;border-color:#DDE4EC}
+
+  /* rodapé */
+  footer{background:var(--ink);color:#9AA6B3;font-size:.85rem}
+  .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding:56px 0 40px}
+  footer h5{font-family:var(--sans);font-size:.66rem;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:#fff;margin:0 0 16px}
+  footer ul{list-style:none;margin:0;padding:0}
+  footer li{padding:6px 0}
+  footer a:hover{color:#fff}
+  footer .mark{font-family:var(--serif);font-size:1.5rem;color:#fff;letter-spacing:.04em}
+  footer .fine{border-top:1px solid #24313F;padding:20px 0 26px;display:flex;
+    justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.78rem;color:#6C7A88}
+  @media(max-width:860px){.fgrid{grid-template-columns:1fr 1fr;gap:30px}}
+</style>
+</head>
+<body>
+
+<!-- ============ topo utilitário ============ -->
+<div class="util">
+  <div class="wrap">
+    <div class="l">Supply · Operações · Sourcing e negociação de contratos</div>
+    <div class="r">
+      <a href="mailto:comercial@m3v.one">comercial@m3v.one</a>
+      <a href="#contato">Agendar conversa</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ navegação ============ -->
+<header class="nav">
+  <div class="wrap">
+    <!-- TROCAR: marca -->
+    <a class="brand" href="#topo">M3V <small>Consultoria</small></a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+    <ul class="menu" id="menu">
+      <li class="mob">
+        <a class="has" href="#servicos">Serviços</a>
+        <div class="drop">
+          <a href="#servicos">Sourcing e negociação de contratos <span>Referência de preço antes de sentar à mesa</span></a>
+          <a href="#servicos">Supply e suprimentos <span>Do pedido ao recebimento, com custo por etapa</span></a>
+          <a href="#servicos">Operações <span>Processo medido e critério de decisão escrito</span></a>
+          <a href="#servicos">Contratos de RH e terceirização <span>Renegociação de contratos de serviço</span></a>
+          <a href="#profissionais">Profissionais por demanda <span>Alocação por hora, dia, projeto ou período</span></a>
+        </div>
+      </li>
+      <li><a href="#profissionais">Profissionais</a></li>
+      <li><a href="#experiencia">Experiência</a></li>
+      <li><a href="#setores">Setores</a></li>
+      <li><a href="#instrumentos">Instrumentos</a></li>
+      <li><a href="#firma">A firma</a></li>
+      <li><a href="#metodo">Método</a></li>
+      <li><a href="#modelo">Como contratar</a></li>
+      <li><a class="cta-nav" href="#contato">Agendar conversa</a></li>
+    </ul>
+  </div>
+</header>
+
+<a id="topo"></a>
+
+<!-- ============ hero ============ -->
+<section class="hero">
+  <div class="wrap grid">
+    <div>
+      <span class="lbl">Supply · Operações · Sourcing</span>
+      <h1>Inteligência de mercado aliada à tecnologia.</h1>
+      <p class="sub">
+        Atuamos em suprimentos, operações e sourcing. Levantamos o processo atual, medimos
+        custo e tempo por etapa, apoiamos a negociação com referência de preço e entregamos as
+        planilhas e relatórios que a equipe passa a usar na rotina.
+      </p>
+      <div class="acts">
+        <a class="btn btn-p" href="#contato">Agendar uma conversa de 30 minutos</a>
+        <a class="btn btn-s" href="#metodo">Como trabalhamos</a>
+      </div>
+    </div>
+
+    <article class="feat">
+      <div class="im">
+        <!-- FOTO 1 · contêineres em porto -->
+        <img src="https://images.unsplash.com/photo-1561118303-3686864b417b?auto=format&fit=crop&w=1200&q=72"
+             alt="Contêineres em porto">
+      </div>
+      <div class="bd">
+        <div class="meta">
+          <span class="tp">Relatório periódico</span>
+          <span class="xs muted">Semanal ou mensal</span>
+        </div>
+        <h3>Leitura de mercado</h3>
+        <p class="sm muted" style="margin:0 0 14px">
+          Resumo das variações de preço, origem e disponibilidade dos itens acompanhados no
+          período, com a fonte de cada número indicada. Enviado aos clientes com contrato de
+          sustentação.
+        </p>
+        <a class="lnk" href="#instrumentos">O que o relatório contém</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ cobertura ============ -->
+<div class="cover">
+  <div class="wrap">
+    <div>
+      <span class="n">4</span>
+      <span class="t">frentes de trabalho: supply, operações, sourcing e contratos de serviço</span>
+    </div>
+    <div>
+      <span class="n">6</span>
+      <span class="t">setores em que atuamos</span>
+    </div>
+    <div>
+      <span class="n">Excel</span>
+      <span class="t">formato em que os entregáveis são fornecidos</span>
+    </div>
+    <div>
+      <span class="n">Mensal</span>
+      <span class="t">periodicidade do contrato de sustentação</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ profissionais por demanda ============ -->
+<section id="profissionais" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="lbl g">Profissionais por demanda</span>
+        <h2 style="margin-top:10px">Contrate pelo tempo que precisar</h2>
+        <p>Especialistas em supply, compras, sourcing e operações alocados na medida da
+        necessidade, sem a contratação de uma estrutura permanente. O profissional pode atuar
+        de forma dedicada ou compartilhada entre clientes, conforme o escopo e a carga horária
+        contratada.</p>
+      </div>
+      <a class="lnk" href="#contato">Solicitar um profissional</a>
+    </div>
+
+    <table class="tb">
+      <thead>
+        <tr><th>Formato</th><th>Carga</th><th>Uso mais frequente</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="nm">Por hora</span></td>
+          <td><span class="ex">4h, 8h ou 20h por m&ecirc;s</span></td>
+          <td>Demanda pontual: uma an&aacute;lise, uma rodada de cota&ccedil;&atilde;o, a revis&atilde;o de um contrato.</td>
+        </tr>
+        <tr>
+          <td><span class="nm">Por dia</span></td>
+          <td><span class="ex">1 ou mais dias por semana</span></td>
+          <td>Acompanhamento de rotina com presen&ccedil;a definida na agenda da equipe.</td>
+        </tr>
+        <tr>
+          <td><span class="nm">Part-time</span></td>
+          <td><span class="ex">2 ou 3 dias por semana</span></td>
+          <td>Condu&ccedil;&atilde;o de uma frente cont&iacute;nua, como a carteira de compras de uma categoria.</td>
+        </tr>
+        <tr>
+          <td><span class="nm">Mensal</span></td>
+          <td><span class="ex">Carga hor&aacute;ria recorrente</span></td>
+          <td>Sustenta&ccedil;&atilde;o de processo j&aacute; implantado, com volume previs&iacute;vel de trabalho.</td>
+        </tr>
+        <tr>
+          <td><span class="nm">Projeto</span></td>
+          <td><span class="ex">Escopo, prazo e entrega definidos</span></td>
+          <td>Implanta&ccedil;&atilde;o de um recorte espec&iacute;fico, com entreg&aacute;veis acordados no in&iacute;cio.</td>
+        </tr>
+        <!-- TROCAR: confirmar a redacao desta linha com o juridico antes de publicar -->
+        <tr>
+          <td><span class="nm">Cobertura de per&iacute;odo</span></td>
+          <td><span class="ex">Prazo determinado</span></td>
+          <td>Atendimento da demanda enquanto a posi&ccedil;&atilde;o est&aacute; em aberto ou o titular afastado.</td>
+        </tr>
+        <tr>
+          <td><span class="nm">Compartilhado</span></td>
+          <td><span class="ex">Profissional dividido entre empresas</span></td>
+          <td>Carga parcial em mais de um cliente, com prioridade acordada em contrato.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pd-nota">
+      A aloca&ccedil;&atilde;o &eacute; feita por contrato de presta&ccedil;&atilde;o de servi&ccedil;os, com escopo, entreg&aacute;veis e
+      carga hor&aacute;ria definidos. A sele&ccedil;&atilde;o, a gest&atilde;o e a substitui&ccedil;&atilde;o do profissional s&atilde;o
+      responsabilidade da M3V.
+    </div>
+
+    <div class="pd-cta">
+      <a class="btn btn-p" href="#contato">Solicitar um profissional</a>
+      <a class="btn btn-s" href="#servicos">Ver as frentes de trabalho</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ setores ============ -->
+<section id="setores">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="lbl g">Setores</span>
+        <h2 style="margin-top:10px">Setores em que atuamos</h2>
+        <p>A sequência de trabalho é a mesma em todos os setores: levantamento do processo,
+        medição de custo e tempo, revisão do fluxo e entrega dos instrumentos. O que varia é a
+        fonte de dados disponível e o vocabulário da operação.</p>
+      </div>
+      <a class="lnk" href="#contato">Falar sobre um caso</a>
+    </div>
+
+    <div class="setores">
+      <div class="s">
+        <span class="lbl g">01</span>
+        <h4>Agronegócio e insumos</h4>
+        <p>Compra de insumos com preço variável e prazo curto entre a cotação e o
+        fechamento.</p>
+        <div class="trava">Frentes usuais: cotação de insumos e contratos de fornecimento</div>
+      </div>
+      <div class="s">
+        <span class="lbl g">02</span>
+        <h4>Alimentos e bebidas</h4>
+        <p>Indústria com matéria-prima de commodity e grande número de itens em compra
+        recorrente.</p>
+        <div class="trava">Frentes usuais: custo por item e política de reposição</div>
+      </div>
+      <div class="s">
+        <span class="lbl g">03</span>
+        <h4>Varejo e e-commerce</h4>
+        <p>Compra recorrente, sortimento amplo e apuração de margem por categoria.</p>
+        <div class="trava">Frentes usuais: sourcing de fornecedores e margem por categoria</div>
+      </div>
+      <div class="s">
+        <span class="lbl g">04</span>
+        <h4>Indústria e manufatura</h4>
+        <p>Compras técnicas, manutenção e cadeia de fornecedores com especificação que varia
+        por planta.</p>
+        <div class="trava">Frentes usuais: cotação técnica e homologação de fornecedor</div>
+      </div>
+      <div class="s">
+        <span class="lbl g">05</span>
+        <h4>Logística e distribuição</h4>
+        <p>Contratos de frete e apuração de custo por rota e por entrega.</p>
+        <div class="trava">Frentes usuais: renegociação de frete e custo por rota</div>
+      </div>
+      <div class="s">
+        <span class="lbl g">06</span>
+        <h4>Serviços, back office e RH</h4>
+        <p>Contratos de terceirização e facilities, e processos administrativos com muitas
+        etapas de aprovação.</p>
+        <div class="trava">Frentes usuais: preço por posto e revisão de escopo contratual</div>
+      </div>
+    </div>
+
+    <p class="muted sm" style="margin-top:26px;max-width:66ch">
+      A referência de preço é construída a partir dos registros da própria operação e, quando
+      existe fonte pública para aquele mercado, também a partir dela.
+    </p>
+  </div>
+</section>
+
+<!-- ============ serviços ============ -->
+<section id="servicos">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="lbl g">Serviços</span>
+        <h2 style="margin-top:10px">Frentes de trabalho</h2>
+        <p>O foco é supply, operações e sourcing. Contratos de RH e terceirização são atendidos
+        na mesma frente de negociação, por serem contratos de serviço recorrente.</p>
+      </div>
+      <a class="lnk" href="#modelo">Como contratar</a>
+    </div>
+
+    <div class="mag">
+      <article class="big">
+        <div class="im">
+          <!-- FOTO 2 · lavoura vista de cima -->
+          <img src="https://images.unsplash.com/photo-1516822277566-bb38424a2b77?auto=format&fit=crop&w=1600&q=72"
+               alt="Lavoura vista de cima">
+        </div>
+        <div class="bd">
+          <span class="lbl">Frente principal</span>
+          <h3 style="margin:12px 0 10px">Sourcing e negociação de contratos</h3>
+          <p class="muted" style="margin:0 0 16px">
+            Levantamento dos contratos vigentes e das condições praticadas; construção da
+            referência de preço a partir do histórico de compra da empresa e das fontes de
+            mercado disponíveis; e preparação da rodada de negociação — escopo comparável entre
+            fornecedores, faixa-alvo, alternativas de fornecimento e regras de reajuste.
+            Acompanhamos as reuniões quando o cliente solicita. A decisão e a assinatura são
+            do cliente.
+          </p>
+          <a class="lnk" href="#instrumentos">Ver o que é entregue</a>
+        </div>
+      </article>
+
+      <div class="col">
+        <div class="it">
+          <span class="lbl g">Supply</span>
+          <h4 style="margin-top:8px">Suprimentos, do pedido ao recebimento</h4>
+          <p>Levantamento do fluxo de compra, medição de tempo e custo por etapa e revisão dos
+          pontos de aprovação, do pedido de compra até o recebimento do item.</p>
+        </div>
+        <div class="it">
+          <span class="lbl g">Operações</span>
+          <h4 style="margin-top:8px">Medição e revisão de processos</h4>
+          <p>Medição do processo em operação, identificação de retrabalho e registro por escrito
+          dos critérios de decisão e dos responsáveis por cada etapa.</p>
+        </div>
+        <div class="it">
+          <span class="lbl g">RH e terceirização</span>
+          <h4 style="margin-top:8px">Contratos de serviço e mão de obra</h4>
+          <p>Revisão de contratos de terceirização, facilities e serviços recorrentes:
+          comparação de escopo, preço por posto ou por chamado e regras de reajuste.</p>
+        </div>
+        <div class="it">
+          <span class="lbl g">Sustentação</span>
+          <h4 style="margin-top:8px">Sustentação dos entregáveis</h4>
+          <p>Atualização periódica das planilhas e relatórios entregues, revisão das fontes de
+          dados e ajuste dos modelos quando o escopo da operação muda.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ experiência ============ -->
+<!-- TROCAR: os logotipos são lidos de img/logos/ (dengo.svg, bellacasa.svg, mica.svg,
+     clinicavitalidade.svg, allithost.svg), arquivos
+     fornecidos por cada cliente com autorização de uso da marca. Enquanto o arquivo não existe,
+     a faixa mostra o nome em texto. Publicar nome ou logo exige autorização escrita do cliente. -->
+<section id="experiencia" style="padding:56px 0 64px">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap">
+      <div>
+        <span class="lbl g">Experiência</span>
+        <h2 style="margin-top:10px;font-size:clamp(1.3rem,2vw,1.7rem)">Contas conduzidas pelos sócios</h2>
+      </div>
+      <p class="muted sm" style="margin:0;max-width:52ch">Trabalhos em negociação de contratos,
+      suprimentos e operações, conduzidos pelos sócios em contratos anteriores à constituição da M3V.</p>
+    </div>
+
+    <div class="marquee" aria-label="Contas conduzidas pelos sócios">
+      <div class="track">
+      <span class="logo"><img src="img/logos/dengo.svg" alt="Dengo Chocolates" onerror="this.replaceWith(document.createTextNode('Dengo Chocolates'))"></span><span class="sep"></span>
+      <span class="logo"><img src="img/logos/bellacasa.svg" alt="Bella Casa" onerror="this.replaceWith(document.createTextNode('Bella Casa'))"></span><span class="sep"></span>
+      <span class="logo"><img src="img/logos/mica.svg" alt="Mica" onerror="this.replaceWith(document.createTextNode('Mica'))"></span><span class="sep"></span>
+      <span class="logo"><img src="img/logos/clinicavitalidade.svg" alt="Clínica Vitalidade Integrada" onerror="this.replaceWith(document.createTextNode('Clínica Vitalidade Integrada'))"></span><span class="sep"></span>
+      <span class="logo"><img src="img/logos/allithost.svg" alt="Allithost" onerror="this.replaceWith(document.createTextNode('Allithost'))"></span><span class="sep"></span>
+        <span class="dup">
+      <span class="logo"><img src="img/logos/dengo.svg" alt="Dengo Chocolates" onerror="this.replaceWith(document.createTextNode('Dengo Chocolates'))"></span><span class="sep"></span>
+      <span class="logo"><img src="img/logos/bellacasa.svg" alt="Bella Casa" onerror="this.replaceWith(document.createTextNode('Bella Casa'))"></span><span class="sep"></span>
+      <span class="logo"><img src="img/logos/mica.svg" alt="Mica" onerror="this.replaceWith(document.createTextNode('Mica'))"></span><span class="sep"></span>
+      <span class="logo"><img src="img/logos/clinicavitalidade.svg" alt="Clínica Vitalidade Integrada" onerror="this.replaceWith(document.createTextNode('Clínica Vitalidade Integrada'))"></span><span class="sep"></span>
+      <span class="logo"><img src="img/logos/allithost.svg" alt="Allithost" onerror="this.replaceWith(document.createTextNode('Allithost'))"></span><span class="sep"></span>
+        </span>
+      </div>
+    </div>
+
+    <p class="cases-nota" style="margin-top:16px">
+      Nomes publicados com autorização dos clientes.
+    </p>
+  </div>
+</section>
+
+<!-- ============ instrumentos ============ -->
+<section id="instrumentos" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="lbl g">Instrumentos</span>
+        <h2 style="margin-top:10px">O que é entregue</h2>
+        <p>Os entregáveis são planilhas e relatórios em formato aberto, com as fontes indicadas
+        e instruções de atualização. Abaixo, os três mais frequentes.</p>
+      </div>
+    </div>
+
+    <div class="inst">
+      <div class="c">
+        <span class="tp">Monitor de mercado</span>
+        <h4>Série de preços e volumes por item</h4>
+        <p>Consolida preço, volume e origem dos itens acompanhados em uma série histórica,
+        a partir das fontes de mercado disponíveis e dos dados fornecidos pelo cliente.</p>
+        <div class="freq"><span>Atualização mensal</span><span>Formato: Excel</span></div>
+      </div>
+      <div class="c">
+        <span class="tp">Painel de cotação</span>
+        <h4>Registro das cotações recebidas</h4>
+        <p>Uma linha por cotação, com fornecedor, item, especificação, preço e data, comparada
+        à referência do período. Mantém o histórico de negociações em um registro único.</p>
+        <div class="freq"><span>A cada negociação</span><span>Fonte: dados do cliente</span></div>
+      </div>
+      <div class="c">
+        <span class="tp">Relatório de mercado</span>
+        <h4>Resumo periódico de preço e disponibilidade</h4>
+        <p>Documento curto com as variações observadas no período nos itens acompanhados, as
+        fontes utilizadas e as implicações para as compras seguintes.</p>
+        <div class="freq"><span>Semanal ou mensal</span><span>Incluído na sustentação</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ método (abas) ============ -->
+<section id="metodo">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="lbl g">Método</span>
+        <h2 style="margin-top:10px">Etapas do trabalho</h2>
+        <p>O trabalho é organizado em quatro etapas, cada uma com entregável definido e
+        acordado no início do contrato.</p>
+      </div>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-t="1"><span class="st">Etapa 01</span>Levantamento</button>
+      <button class="tab" role="tab" aria-selected="false" data-t="2"><span class="st">Etapa 02</span>Medição</button>
+      <button class="tab" role="tab" aria-selected="false" data-t="3"><span class="st">Etapa 03</span>Revisão</button>
+      <button class="tab" role="tab" aria-selected="false" data-t="4"><span class="st">Etapa 04</span>Implantação</button>
+    </div>
+
+    <div class="panel on" data-p="1">
+      <div>
+        <h3>Levantamento do processo atual</h3>
+        <p class="muted">Entrevistas com as áreas envolvidas e acompanhamento da rotina, para
+        registrar o fluxo como ele é executado, incluindo exceções e etapas não documentadas.</p>
+      </div>
+      <div class="fica">
+        <span class="lbl">O que fica deste passo</span>
+        <p style="margin:12px 0 0">Fluxograma do processo atual, com os pontos de decisão e o
+        responsável por cada um.</p>
+      </div>
+    </div>
+
+    <div class="panel" data-p="2">
+      <div>
+        <h3>Medição de tempo e custo</h3>
+        <p class="muted">Apuração de tempo, custo e retrabalho por etapa, com a fonte de cada
+        número, o período considerado e o denominador de cada indicador registrados.</p>
+      </div>
+      <div class="fica">
+        <span class="lbl">O que fica deste passo</span>
+        <p style="margin:12px 0 0">Planilha de medição por etapa, com fontes, período e
+        critérios de cálculo.</p>
+      </div>
+    </div>
+
+    <div class="panel" data-p="3">
+      <div>
+        <h3>Revisão do fluxo e dos critérios</h3>
+        <p class="muted">Proposta de fluxo revisado e registro por escrito dos critérios de
+        decisão: o que é comparado, com que dado e a partir de que diferença a escolha muda.</p>
+      </div>
+      <div class="fica">
+        <span class="lbl">O que fica deste passo</span>
+        <p style="margin:12px 0 0">Processo revisado e critérios documentados, com estimativa
+        de efeito sobre custo e prazo.</p>
+      </div>
+    </div>
+
+    <div class="panel" data-p="4">
+      <div>
+        <h3>Implantação dos entregáveis</h3>
+        <p class="muted">Entrega das planilhas e relatórios em uso, com as fontes definidas, a
+        frequência de atualização acordada e o responsável indicado para cada rotina, além da
+        documentação de manutenção.</p>
+      </div>
+      <div class="fica">
+        <span class="lbl">O que fica deste passo</span>
+        <p style="margin:12px 0 0">Entregáveis em operação e manual de atualização, com a
+        indicação do que fazer quando a fonte de dados muda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ modelo comercial ============ -->
+<section id="modelo" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="lbl g">Como contratar</span>
+        <h2 style="margin-top:10px">Duas formas de contratar</h2>
+        <p>Por projeto, na sequência descrita abaixo, ou por alocação de profissional, nos
+        formatos da seção <a class="lnk" href="#profissionais">Profissionais por demanda</a>.
+        Em qualquer das duas, escopo, prazo e preço são definidos antes do início.</p>
+      </div>
+    </div>
+
+    <div class="duo">
+      <div class="f">
+        <span class="lbl">Fase 1 · Entrada</span>
+        <h3 style="margin:12px 0 10px">Diagnóstico e entrega inicial</h3>
+        <p class="muted sm">Definimos com o cliente o processo a ser tratado e o que será
+        medido, e entregamos a revisão do fluxo com os instrumentos correspondentes.</p>
+        <ul>
+          <li>Escopo, prazo e preço definidos por escrito</li>
+          <li>Entrega única, sem cronograma de fases</li>
+          <li>Decisão sobre continuidade ao final da entrega</li>
+        </ul>
+      </div>
+      <div class="f">
+        <span class="lbl">Fase 2 · Continuidade</span>
+        <h3 style="margin:12px 0 10px">Contrato mensal de sustentação</h3>
+        <p class="muted sm">Contratado após a entrega inicial. Mantém os entregáveis
+        atualizados e a leitura de mercado na periodicidade acordada.</p>
+        <ul>
+          <li>Relatório periódico de mercado</li>
+          <li>Análises sob demanda</li>
+          <li>Atualização dos entregáveis</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ a firma ============ -->
+<section id="firma" class="firma">
+  <div class="wrap g">
+    <div>
+      <span class="lbl g">A firma</span>
+      <h2 style="margin:10px 0 16px">Quem conduz o trabalho</h2>
+      <p class="muted">
+        Os projetos são conduzidos pelos sócios, com apoio de analistas alocados por conta.
+        A sociedade reúne experiência executiva em indústria multinacional, com atuação na
+        Europa e na América Latina, e experiência em negociação de contratos de supply e de
+        serviços.
+      </p>
+      <ul class="roles">
+        <li><b>Sourcing e contratos</b><span>Negociação de contratos de supply e de serviços recorrentes.</span></li>
+        <li><b>Estratégia e mercado</b><span>Condução no cliente, leitura de mercado e inteligência competitiva.</span></li>
+        <li><b>Comercial e estrutura</b><span>Relacionamento, contratos e a estrutura societária e contábil.</span></li>
+        <li><b>Dados e produto</b><span>Modelagem dos dados, construção das planilhas e formato dos entregáveis.</span></li>
+      </ul>
+    </div>
+    <div class="im">
+      <!-- FOTO 3 · sala de reunião -->
+      <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=1400&q=72"
+           alt="Sala de reunião">
+    </div>
+  </div>
+</section>
+
+<!-- ============ contato ============ -->
+<section id="contato" class="final" style="padding:0">
+  <div class="bg">
+    <!-- FOTO 4 · campo visto do alto -->
+    <img src="https://images.unsplash.com/photo-1488354028423-039ac1e23357?auto=format&fit=crop&w=2000&q=72" alt="">
+  </div>
+  <div class="in">
+    <div class="wrap">
+      <span class="lbl" style="color:#C6A183">Contato</span>
+      <h2 style="margin-top:12px">Conversa inicial de 30 minutos</h2>
+      <p>Na primeira conversa levantamos o processo que motivou o contato, o volume envolvido
+      e os dados disponíveis. Ao final, indicamos o recorte possível para uma primeira
+      contratação, com prazo e faixa de preço, ou informamos que não é um caso para nós.</p>
+      <div class="acts">
+          <a class="btn btn-p" href="mailto:comercial@m3v.one?subject=Conversa%20de%2030%20minutos">comercial@m3v.one</a>
+        <a class="btn btn-s" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ rodapé ============ -->
+<footer>
+  <div class="wrap fgrid">
+    <div>
+      <div class="mark">M3V</div>
+      <p class="xs" style="margin-top:14px;max-width:32ch">
+        Supply, operações e sourcing. Agronegócio, indústria, alimentos, varejo,
+        logística e serviços.
+      </p>
+      <p class="xs" style="color:#6C7A88">Atendimento em português e inglês · Brasil e Europa</p>
+    </div>
+    <div>
+      <h5>Serviços</h5>
+      <ul>
+        <li><a href="#profissionais">Profissionais por demanda</a></li>
+        <li><a href="#servicos">Sourcing e contratos</a></li>
+        <li><a href="#servicos">Supply e suprimentos</a></li>
+        <li><a href="#servicos">Operações</a></li>
+        <li><a href="#setores">Setores atendidos</a></li>
+        <li><a href="#instrumentos">Instrumentos de decisão</a></li>
+        <li><a href="#modelo">Sustentação mensal</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Referência</h5>
+      <ul>
+        <li><a href="#experiencia">Experiência</a></li>
+        <li><a href="#firma">A firma</a></li>
+        <li><a href="#metodo">Método</a></li>
+        <li><a href="#instrumentos">O que fica com o cliente</a></li>
+        <li><a href="#modelo">Como contratar</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contato</h5>
+      <ul>
+        <!-- TROCAR: LinkedIn definitivo -->
+        <li><a href="mailto:comercial@m3v.one">comercial@m3v.one</a></li>
+        <li><a href="#contato">Agendar conversa</a></li>
+        <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap fine">
+    <!-- TROCAR: incluir o CNPJ 42.983.550/0001-18 no rodapé se decidirem exibi-lo -->
+    <div>M3V Consultoria e Representações Ltda · São Paulo/SP</div>
+    <div>Página atualizada em agosto de 2026</div>
+  </div>
+</footer>
+
+<script>
+  // menu mobile
+  var burger=document.getElementById('burger'), menu=document.getElementById('menu');
+  burger.addEventListener('click',function(){ menu.classList.toggle('open'); });
+  document.querySelectorAll('.menu .has').forEach(function(a){
+    a.addEventListener('click',function(e){
+      if(window.innerWidth<=1040){ e.preventDefault(); a.parentElement.classList.toggle('mobopen'); }
+    });
+  });
+  // abas do método
+  var tabs=document.querySelectorAll('.tab');
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(x){ x.setAttribute('aria-selected','false'); });
+      t.setAttribute('aria-selected','true');
+      document.querySelectorAll('.panel').forEach(function(p){
+        p.classList.toggle('on', p.dataset.p===t.dataset.t);
+      });
+    });
+  });
+</script>
+</body>
+</html>
