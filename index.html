@@ -123,8 +123,10 @@
   .cover div:last-child{border-right:0}
   .cover .n{font-family:var(--serif);font-size:1.9rem;line-height:1.1;display:block;margin-bottom:6px}
   .cover .t{font-size:.83rem;color:rgba(255,255,255,.72)}
-  @media(max-width:860px){.cover .wrap{grid-template-columns:1fr 1fr}
-    .cover div{border-bottom:1px solid rgba(255,255,255,.14);padding-left:0}}
+  @media(max-width:860px){.cover .wrap{grid-template-columns:1fr 1fr;padding:0 30px}
+    .cover div{border-bottom:1px solid rgba(255,255,255,.14);padding:20px 16px 22px!important}
+    .cover div:nth-child(odd){border-right:1px solid rgba(255,255,255,.14)}
+    .cover div:nth-child(even){border-right:0}}
 
   /* ---------- seções ---------- */
   section{padding:84px 0}
@@ -198,7 +200,8 @@
   .panel .fica{background:var(--bg-2);padding:28px 30px;border-left:2px solid var(--copper)}
   .panel h3{margin-bottom:12px}
   @media(max-width:860px){.panel.on{grid-template-columns:1fr;gap:24px}
-    .tab{padding:13px 16px;font-size:.84rem}}
+    .tabs{display:grid;grid-template-columns:1fr 1fr}
+    .tab{padding:13px 10px;font-size:.84rem;text-align:left}}
 
   /* instrumentos */
   .inst{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
@@ -228,10 +231,12 @@
     text-transform:uppercase;padding:5px 10px;border:1px solid var(--line);color:var(--muted)}
   .pill.p{border-color:#C3D1E2;background:var(--navy-soft);color:var(--navy)}
   @media(max-width:760px){
-    .tb,.tb tbody,.tb tr,.tb td{display:block;width:100%}
+    .tb,.tb tbody,.tb tr,.tb td{display:block;width:100%!important}
     .tb thead{display:none}
     .tb tr{border-bottom:1px solid var(--line);padding:18px 0}
-    .tb td{border:0;padding:3px 0}
+    .tb td{border:0;padding:3px 0;padding-right:0}
+    .tb td .nm{font-size:1.1rem}
+    .tb td .ex{font-weight:500}
   }
 
   /* modelo */
@@ -272,16 +277,18 @@
 
   /* rodapé */
   footer{background:var(--ink);color:#9AA6B3;font-size:.85rem}
-  .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding:56px 0 40px}
+  .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-top:56px;padding-bottom:40px}
   footer h5{font-family:var(--sans);font-size:.66rem;font-weight:600;letter-spacing:.16em;
     text-transform:uppercase;color:#fff;margin:0 0 16px}
   footer ul{list-style:none;margin:0;padding:0}
   footer li{padding:6px 0}
   footer a:hover{color:#fff}
   footer .mark{font-family:var(--serif);font-size:1.5rem;color:#fff;letter-spacing:.04em}
-  footer .fine{border-top:1px solid #24313F;padding:20px 0 26px;display:flex;
+  footer .fine{border-top:1px solid #24313F;padding-top:20px;padding-bottom:26px;display:flex;
     justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.78rem;color:#6C7A88}
   @media(max-width:860px){.fgrid{grid-template-columns:1fr 1fr;gap:30px}}
+  @media(max-width:600px){.fgrid{grid-template-columns:1fr;gap:26px;padding-top:44px;padding-bottom:32px}
+    footer .fine{flex-direction:column;gap:6px}}
 </style>
 </head>
 <body>
@@ -877,7 +884,7 @@
   <div class="wrap fine">
     <!-- TROCAR: incluir o CNPJ 42.983.550/0001-18 no rodapé se decidirem exibi-lo -->
     <div>M3V Consultoria e Representações Ltda · São Paulo/SP</div>
-    <div>Página atualizada em agosto de 2026</div>
+    <div>Página atualizada em setembro de 2026</div>
   </div>
 </footer>
 
