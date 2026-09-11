@@ -244,18 +244,6 @@
   .perf .ex p span{color:#C6A183}
   @media(max-width:960px){.modelo{grid-template-columns:1fr;gap:36px}.perf{padding:30px 26px 32px}}
 
-  /* firma */
-  .firma{border-top:1px solid var(--line)}
-  .firma .g{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-  .firma .im{aspect-ratio:5/4;overflow:hidden;background:var(--navy-2)}
-  .firma .im img{width:100%;height:100%;object-fit:cover;filter:grayscale(.4) contrast(1.05)}
-  .firma .roles{margin:26px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
-  .firma .roles li{padding:16px 0;border-bottom:1px solid var(--line);display:grid;
-    grid-template-columns:200px 1fr;gap:20px;font-size:.94rem;color:var(--muted)}
-  .firma .roles b{font-weight:500;color:var(--ink)}
-  @media(max-width:960px){.firma .g{grid-template-columns:1fr;gap:30px}
-    .firma .roles li{grid-template-columns:1fr;gap:4px}}
-
   /* cta final */
   .final{position:relative;color:#fff;background:var(--navy-2)}
   .final .bg{position:absolute;inset:0}
@@ -318,7 +306,6 @@
       </li>
       <li><a href="#experiencia">Experiência</a></li>
       <li><a href="#setores">Setores</a></li>
-      <li><a href="#firma">A firma</a></li>
       <li><a href="#metodo">Método</a></li>
       <li><a href="#modelo">Como contratar</a></li>
       <li><a class="cta-nav" href="#contato">Agendar conversa</a></li>
@@ -351,10 +338,9 @@
     </div>
 
     <figure class="hero-im">
-      <!-- FOTO 1 · corredor de armazém (Unsplash 1553413077-190dd305871c). Alternativa: porto com
-           guindastes, 1578575437130-527eed3abbec. Trocar por foto própria em img/ quando houver. -->
-      <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&amp;fit=crop&amp;w=1100&amp;q=72"
-           alt="Corredor de armazém com estantes de paletes">
+      <!-- FOTO 1 · sala de reunião (Unsplash 1431540015161-0bf868a2d407). Trocar por foto própria em img/ quando houver. -->
+      <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&amp;fit=crop&amp;w=1400&amp;q=72"
+           alt="Sala de reunião">
     </figure>
   </div>
 </section>
@@ -605,32 +591,6 @@
   </div>
 </section>
 
-<!-- ============ a firma ============ -->
-<section id="firma" class="firma">
-  <div class="wrap g">
-    <div>
-      <span class="lbl g">A firma</span>
-      <h2 style="margin:10px 0 16px">Quem conduz o trabalho</h2>
-      <p class="muted">
-        Projetos conduzidos diretamente pelos sócios, com proximidade e profundidade analítica.
-        A M3V reúne vivência executiva em indústrias multinacionais e negociação de contratos
-        de grande porte, aplicadas à realidade operacional do mercado brasileiro.
-      </p>
-      <ul class="roles">
-        <li><b>Sourcing e contratos</b><span>Negociação de contratos de supply e de serviços recorrentes.</span></li>
-        <li><b>Estratégia e mercado</b><span>Condução no cliente, leitura de mercado e inteligência competitiva.</span></li>
-        <li><b>Comercial e estrutura</b><span>Relacionamento, contratos e a estrutura societária e contábil.</span></li>
-        <li><b>Dados e produto</b><span>Modelagem dos dados, construção das planilhas e formato dos entregáveis.</span></li>
-      </ul>
-    </div>
-    <div class="im">
-      <!-- FOTO 3 · sala de reunião -->
-      <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&amp;fit=crop&amp;w=1400&amp;q=72"
-           alt="Sala de reunião">
-    </div>
-  </div>
-</section>
-
 <!-- ============ contato ============ -->
 <section id="contato" class="final" style="padding:0">
   <div class="bg">
@@ -682,8 +642,7 @@
       <h5>Referência</h5>
       <ul>
         <li><a href="#experiencia">Experiência</a></li>
-        <li><a href="#firma">A firma</a></li>
-        <li><a href="#metodo">Método</a></li>
+          <li><a href="#metodo">Método</a></li>
         <li><a href="#modelo">Como contratar</a></li>
       </ul>
     </div>
