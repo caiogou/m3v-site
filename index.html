@@ -8,7 +8,9 @@
 <meta property="og:title" content="M3V · Supply, operações e sourcing">
 <meta property="og:description" content="Processo medido, critério de decisão escrito e o instrumento que continua rodando. Entrada com escopo fechado.">
 <meta property="og:type" content="website">
-<!-- TROCAR: og:url e og:image quando houver domínio -->
+<meta property="og:url" content="https://www.m3vconsultoria.com.br/">
+<meta property="og:image" content="https://www.m3vconsultoria.com.br/img/resumo-m3v.png">
+<link rel="canonical" href="https://www.m3vconsultoria.com.br/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300..600&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
@@ -106,19 +108,21 @@
 
   /* ---------- hero ---------- */
   .hero{padding:60px 0 54px;border-bottom:1px solid var(--line)}
-  .hero .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+  .hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:stretch}
   .hero h1{max-width:15ch;margin:16px 0 20px}
-  .hero .sub{font-size:1.08rem;color:var(--muted);max-width:46ch}
+  .hero .sub{font-size:1.08rem;color:var(--muted);max-width:60ch}
   .hero .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-  .feat{border:1px solid var(--line);background:var(--bg-2)}
-  .feat .im{aspect-ratio:16/10;overflow:hidden;background:var(--navy-2)}
-  .feat .im img{width:100%;height:100%;object-fit:cover;filter:grayscale(.3) contrast(1.03)}
-  .feat .bd{padding:22px 24px 26px}
-  .feat .meta{display:flex;gap:12px;align-items:center;margin-bottom:12px}
-  .feat .tp{font-size:.63rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-    background:var(--navy);color:#fff;padding:5px 9px}
-  .feat h3{margin-bottom:8px}
-  @media(max-width:960px){.hero .grid{grid-template-columns:1fr;gap:34px}.hero h1{max-width:20ch}}
+  .hero h1{max-width:18ch}
+  .hero h1 em{font-style:normal;color:var(--copper)}
+  .hero-pts{list-style:none;margin:38px 0 0;padding:26px 0 0;border-top:1px solid var(--line);
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px 24px;max-width:760px}
+  .hero-pts b{display:block;font-family:var(--serif);font-weight:400;font-size:1.05rem;color:var(--ink);margin-bottom:3px}
+  .hero-pts span{font-size:.82rem;color:var(--muted);line-height:1.5;display:block}
+  @media(max-width:600px){.hero-pts{grid-template-columns:1fr}}
+  .hero-im{margin:0;background:var(--navy-2);position:relative;min-height:480px;overflow:hidden}
+  .hero-im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.4) contrast(1.05);display:block}
+  @media(max-width:960px){.hero .grid{grid-template-columns:1fr;gap:34px}.hero h1{max-width:20ch}
+    .hero-im{min-height:0;aspect-ratio:4/3;position:relative}}
 
   /* ---------- seções ---------- */
   section{padding:84px 0;scroll-margin-top:76px}
@@ -151,23 +155,6 @@
     .marquee .track .dup{display:none}
     .marquee{-webkit-mask-image:none;mask-image:none}}
 
-  /* profissionais por demanda */
-  .pd-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--ink)}
-  .pd{padding:16px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:170px 1fr;
-    gap:14px;font-size:.95rem;align-items:baseline}
-  .pd:nth-child(odd){padding-right:32px}
-  .pd:nth-child(even){padding-left:32px;border-left:1px solid var(--line)}
-  .pd b{font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--ink)}
-  .pd span{color:var(--muted)}
-  @media(max-width:860px){.pd-grid{grid-template-columns:1fr}
-    .pd:nth-child(odd){padding-right:0}.pd:nth-child(even){padding-left:0;border-left:0}
-    .pd{grid-template-columns:1fr;gap:3px}}
-
-  .pd-cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .pd-nota{margin-top:26px;padding:20px 24px;background:#fff;border:1px solid var(--line);
-    font-size:.92rem;color:var(--muted);max-width:78ch}
-  .tb td .ex{color:var(--text)}
-
   /* setores */
   .setores{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
   .setores .s{padding:28px 30px 32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column}
@@ -191,33 +178,30 @@
   .mag .it h4{margin-bottom:6px}
   .mag .it p{margin:0;color:var(--muted);font-size:.93rem}
   @media(max-width:960px){.mag{grid-template-columns:1fr;gap:26px}}
+  /* lista numerada de serviços */
+  .svc{list-style:none;margin:-14px 0 0;padding:0}
+  .svc li{display:grid;grid-template-columns:56px 1.1fr 1fr;gap:0 40px;padding:30px 0;border-bottom:1px solid var(--line);align-items:start}
+  .svc .num{font-size:.72rem;font-weight:600;letter-spacing:.14em;color:var(--copper);padding-top:6px}
+  .svc h3{font-size:1.35rem;margin:0 0 12px}
+  .svc .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .svc .tags span{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);
+    border:1px solid var(--line);background:var(--bg-2);padding:6px 10px;white-space:nowrap}
+  .svc p{margin:0;color:var(--muted);font-size:.95rem;padding-top:4px}
+  @media(max-width:960px){.svc li{grid-template-columns:40px 1fr;gap:6px 18px}
+    .svc p{grid-column:2;padding-top:14px}}
 
-  /* abas do método */
-  .tabs{display:flex;gap:0;border-bottom:1px solid var(--line);flex-wrap:wrap}
-  .tab{padding:16px 24px 15px;font-size:.9rem;color:var(--muted);border-bottom:2px solid transparent;
-    background:none;border-top:0;border-left:0;border-right:0;cursor:pointer;font-family:var(--sans)}
-  .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--copper);font-weight:500}
-  .tab .st{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--faint);margin-bottom:3px}
-  .panel{display:none;padding:40px 0 0}
-  .panel.on{display:grid;grid-template-columns:1fr 1fr;gap:56px}
-  .panel .fica{background:var(--bg-2);padding:28px 30px;border-left:2px solid var(--copper)}
-  .panel h3{margin-bottom:12px}
-  @media(max-width:860px){.panel.on{grid-template-columns:1fr;gap:24px}
-    .tabs{display:grid;grid-template-columns:1fr 1fr}
-    .tab{padding:13px 10px;font-size:.84rem;text-align:left}}
-
-  /* instrumentos */
-  .inst{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
-  .inst .c{padding:30px 30px 34px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .inst .c:last-child{border-right:0}
-  .inst .tp{display:inline-block;font-size:.63rem;font-weight:600;letter-spacing:.14em;
-    text-transform:uppercase;border:1px solid var(--line);padding:5px 9px;color:var(--muted);
-    margin-bottom:18px}
-  .inst .c p{color:var(--muted);font-size:.94rem;margin:10px 0 0}
-  .inst .freq{margin-top:20px;padding-top:14px;border-top:1px solid var(--line-2);
-    font-size:.79rem;color:var(--faint);display:flex;justify-content:space-between;gap:10px}
-  @media(max-width:860px){.inst{grid-template-columns:1fr}.inst .c{border-right:0}}
+  /* método em quatro passos */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:-14px}
+  .steps .st{padding:26px 26px 30px;border-left:1px solid var(--line)}
+  .steps .st:first-child{padding-left:0;border-left:0}
+  .steps .k{font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--copper)}
+  .steps h3{font-size:1.35rem;margin:12px 0 12px}
+  .steps p{margin:0;color:var(--muted);font-size:.93rem}
+  @media(max-width:960px){.steps{grid-template-columns:1fr 1fr}
+    .steps .st{padding:22px 20px 26px;border-left:0;border-top:1px solid var(--line)}
+    .steps .st:nth-child(odd){padding-left:0}.steps .st:nth-child(even){border-left:1px solid var(--line)}}
+  @media(max-width:600px){.steps{grid-template-columns:1fr}
+    .steps .st,.steps .st:nth-child(even){padding-left:0;padding-right:0;border-left:0}}
 
   /* bases */
   .bases{background:var(--bg-2)}
@@ -243,15 +227,22 @@
     .tb td .ex{font-weight:500}
   }
 
-  /* modelo */
-  .duo{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--ink)}
-  .duo .f{padding:34px 40px 40px;border-right:1px solid var(--line)}
-  .duo .f:last-child{border-right:0;padding-right:0}
-  .duo .f:first-child{padding-left:0}
-  .duo ul{list-style:none;margin:22px 0 0;padding:0}
-  .duo li{font-size:.93rem;color:var(--muted);padding:12px 0;border-top:1px solid var(--line-2)}
-  @media(max-width:860px){.duo{grid-template-columns:1fr}
-    .duo .f{padding:28px 0;border-right:0;border-bottom:1px solid var(--line)}}
+  /* modelo de contratação */
+  .modelo{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:start}
+  .modelo .lead{color:var(--muted);max-width:56ch;margin:18px 0 0}
+  .mlist{list-style:none;margin:30px 0 0;padding:0;border-top:1px solid var(--ink)}
+  .mlist li{display:grid;grid-template-columns:22px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);
+    font-size:.95rem;color:var(--muted)}
+  .mlist li b{font-family:var(--serif);font-weight:400;font-size:1.08rem;color:var(--ink);display:block;margin-bottom:2px}
+  .mlist li i{font-style:normal;color:var(--copper);font-size:.9rem;line-height:1.7}
+  .perf{background:var(--navy);color:#fff;padding:38px 40px 40px}
+  .perf h3{color:#fff;font-size:1.5rem;line-height:1.25;margin:12px 0 16px}
+  .perf p{color:rgba(255,255,255,.78);font-size:.95rem}
+  .perf .ex{margin-top:26px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);padding:18px 20px}
+  .perf .ex .lbl{color:rgba(255,255,255,.55)}
+  .perf .ex p{margin:8px 0 0;color:#fff;font-size:.92rem;line-height:1.7}
+  .perf .ex p span{color:#C6A183}
+  @media(max-width:960px){.modelo{grid-template-columns:1fr;gap:36px}.perf{padding:30px 26px 32px}}
 
   /* firma */
   .firma{border-top:1px solid var(--line)}
@@ -318,17 +309,15 @@
       <li class="mob">
         <a class="has" href="#servicos">Serviços</a>
         <div class="drop">
-          <a href="#servicos">Sourcing e negociação de contratos <span>Referência de preço antes de sentar à mesa</span></a>
-          <a href="#servicos">Supply e suprimentos <span>Do pedido ao recebimento, com custo por etapa</span></a>
-          <a href="#servicos">Operações <span>Processo medido e critério de decisão escrito</span></a>
-          <a href="#servicos">Contratos de RH e terceirização <span>Renegociação de contratos de serviço</span></a>
-          <a href="#profissionais">Profissionais por demanda <span>Alocação por hora, dia, projeto ou período</span></a>
+          <a href="#servicos">Sourcing e procurement estratégico <span>RFP/RFQ, benchmark, should-cost</span></a>
+          <a href="#servicos">Negociação e otimização de contratos <span>Saving, renovação, reajustes</span></a>
+          <a href="#servicos">Excelência em supply e compras <span>Processos, KPIs, governança</span></a>
+          <a href="#servicos">Operações e performance <span>Eficiência, produtividade, dados</span></a>
+          <a href="#servicos">Especialistas sob demanda <span>Projeto, interino ou cobertura de período</span></a>
         </div>
       </li>
-      <li><a href="#profissionais">Profissionais</a></li>
       <li><a href="#experiencia">Experiência</a></li>
       <li><a href="#setores">Setores</a></li>
-      <li><a href="#instrumentos">Instrumentos</a></li>
       <li><a href="#firma">A firma</a></li>
       <li><a href="#metodo">Método</a></li>
       <li><a href="#modelo">Como contratar</a></li>
@@ -343,69 +332,30 @@
 <section class="hero">
   <div class="wrap grid">
     <div>
-      <span class="lbl">Supply · Operações · Sourcing</span>
-      <h1>A cadeia de suprimentos como vantagem competitiva.</h1>
+      <span class="lbl">Supply · Sourcing · Operações · Negociação</span>
+      <h1>Transformamos custos e processos em <em>resultado mensurável.</em></h1>
       <p class="sub">
-        Redesenhamos operações, sourcing e supply chain para proteger margem. Processos com
-        critério de decisão escrito, governança definida e instrumentos que a sua equipe opera
-        sem depender de nós.
+        A M3V atua ao lado da sua empresa para identificar oportunidades, reduzir custos,
+        fortalecer negociações e melhorar a eficiência operacional — com projetos desenhados
+        de acordo com a necessidade do negócio e foco na captura de valor.
       </p>
       <div class="acts">
-        <a class="btn btn-p" href="#contato">Agendar diagnóstico operacional</a>
-        <a class="btn btn-s" href="#metodo">Como trabalhamos</a>
+        <a class="btn btn-p" href="#contato">Agendar conversa estratégica &rarr;</a>
+        <a class="btn btn-s" href="#servicos">Conhecer soluções</a>
       </div>
+      <ul class="hero-pts">
+        <li><b>Foco em resultado</b><span>Valor capturado e impacto acompanhado</span></li>
+        <li><b>Atuação executiva</b><span>Experiência prática em ambientes complexos</span></li>
+        <li><b>Modelo flexível</b><span>Projeto, suporte especializado ou performance</span></li>
+      </ul>
     </div>
 
-    <article class="feat">
-      <div class="im">
-        <!-- FOTO 1 · contêineres em porto -->
-        <img src="https://images.unsplash.com/photo-1561118303-3686864b417b?auto=format&amp;fit=crop&amp;w=1200&amp;q=72"
-             alt="Contêineres em porto">
-      </div>
-      <div class="bd">
-        <div class="meta">
-          <span class="tp">Relatório periódico</span>
-          <span class="xs muted">Semanal ou mensal</span>
-        </div>
-        <h3>Leitura de mercado</h3>
-        <p class="sm muted" style="margin:0 0 14px">
-          Panorama atualizado das principais categorias do mercado. Dados e tendências para
-          manter seu planejamento sempre um passo à frente.
-        </p>
-        <a class="lnk" href="#instrumentos">O que o relatório contém</a>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ============ profissionais por demanda ============ -->
-<section id="profissionais" style="background:var(--bg-2)">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="lbl g">Profissionais por demanda</span>
-        <h2 style="margin-top:10px">Contrate pelo tempo que precisar</h2>
-        <p>Especialistas em supply, compras, sourcing e operações alocados na medida da
-        necessidade, dedicados ou compartilhados, sem estrutura permanente.</p>
-      </div>
-      <a class="lnk" href="#contato">Solicitar um profissional</a>
-    </div>
-
-    <div class="pd-grid">
-      <div class="pd"><b>Por hora</b><span>4h, 8h ou 20h por mês — demanda pontual</span></div>
-      <div class="pd"><b>Por dia</b><span>1 ou mais dias por semana — acompanhamento de rotina</span></div>
-      <div class="pd"><b>Part-time</b><span>2 ou 3 dias por semana — condução de uma frente</span></div>
-      <div class="pd"><b>Mensal</b><span>carga recorrente — sustentação de processo implantado</span></div>
-      <div class="pd"><b>Projeto</b><span>escopo, prazo e entrega definidos</span></div>
-      <!-- TROCAR: confirmar a redacao desta linha com o juridico antes de publicar -->
-      <div class="pd"><b>Cobertura de período</b><span>posição em aberto ou titular afastado</span></div>
-      <div class="pd"><b>Compartilhado</b><span>profissional dividido entre empresas, com prioridade acordada</span></div>
-    </div>
-
-    <p class="muted sm" style="margin:26px 0 0;max-width:76ch">
-      Alocação por contrato de prestação de serviços, com escopo, entregáveis e carga horária
-      definidos. Seleção, gestão e substituição do profissional são responsabilidade da M3V.
-    </p>
+    <figure class="hero-im">
+      <!-- FOTO 1 · corredor de armazém (Unsplash 1553413077-190dd305871c). Alternativa: porto com
+           guindastes, 1578575437130-527eed3abbec. Trocar por foto própria em img/ quando houver. -->
+      <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&amp;fit=crop&amp;w=1100&amp;q=72"
+           alt="Corredor de armazém com estantes de paletes">
+    </figure>
   </div>
 </section>
 
@@ -479,61 +429,62 @@
     <div class="head">
       <div>
         <span class="lbl g">Serviços</span>
-        <h2 style="margin-top:10px">Frentes de trabalho</h2>
-        <p>Sourcing, supply chain e governança de operações. Contratos de RH e terceirização
-        entram na mesma frente de negociação.</p>
+        <h2 style="margin-top:10px">Entramos onde existe oportunidade de capturar valor.</h2>
+        <p>O escopo pode envolver uma negociação específica, uma categoria de compras, um
+        conjunto de contratos ou uma revisão mais ampla da operação.</p>
       </div>
       <a class="lnk" href="#modelo">Como contratar</a>
     </div>
 
-    <div class="mag">
-      <article class="big">
-        <div class="im">
-          <!-- FOTO 2 · lavoura vista de cima -->
-          <img src="https://images.unsplash.com/photo-1516822277566-bb38424a2b77?auto=format&amp;fit=crop&amp;w=1600&amp;q=72"
-               alt="Lavoura vista de cima">
+    <ol class="svc">
+      <li>
+        <span class="num">01</span>
+        <div>
+          <h3>Sourcing e procurement estratégico</h3>
+          <div class="tags"><span>RFP / RFQ</span><span>Benchmark</span><span>Should-cost</span></div>
         </div>
-        <div class="bd">
-          <span class="lbl">Frente principal</span>
-          <h3 style="margin:12px 0 10px">Sourcing estratégico e contratos</h3>
-          <p class="muted" style="margin:0 0 16px">
-            Referência de preço construída a partir do histórico da empresa e do mercado, antes
-            de qualquer negociação. Escopo comparável entre fornecedores, faixa-alvo e regras de
-            reajuste que preservam o caixa. Acompanhamos a mesa quando o cliente solicita; a
-            decisão e a assinatura são dele.
-          </p>
-          <a class="lnk" href="#instrumentos">Ver o que é entregue</a>
+        <p>Estratégia de fornecedores, processos competitivos, equalização de propostas, análise
+        de custo total e construção de alternativas de fornecimento.</p>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <div>
+          <h3>Negociação e otimização de contratos</h3>
+          <div class="tags"><span>Saving</span><span>Renovação</span><span>Reajustes</span></div>
         </div>
-      </article>
-
-      <div class="col">
-        <div class="it">
-          <span class="lbl g">Supply chain</span>
-          <h4 style="margin-top:8px">Supply chain de ponta a ponta</h4>
-          <p>Redesenho do fluxo de suprimentos, do pedido ao recebimento, com o custo de cada
-          etapa visível e governança definida sobre quem aprova o quê.</p>
+        <p>Revisão econômica e comercial de contratos, preparação da estratégia de negociação e
+        apoio na captura de melhores preços, termos e condições. Inclui contratos de serviços,
+        terceirização e facilities.</p>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <div>
+          <h3>Excelência em supply e compras</h3>
+          <div class="tags"><span>Processos</span><span>KPIs</span><span>Governança</span></div>
         </div>
-        <div class="it">
-          <span class="lbl g">Operações</span>
-          <h4 style="margin-top:8px">Governança de operações</h4>
-          <p>Diagnóstico e reestruturação de processos: gargalos identificados, retrabalho
-          eliminado, critérios de decisão documentados para que a execução não dependa de quem
-          estava na sala.</p>
+        <p>Diagnóstico do processo de compras e supply, melhoria de fluxo, definição de
+        indicadores, responsabilidades, políticas e rotinas de gestão.</p>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <div>
+          <h3>Operações e performance</h3>
+          <div class="tags"><span>Eficiência</span><span>Produtividade</span><span>Dados</span></div>
         </div>
-        <div class="it">
-          <span class="lbl g">RH e terceirização</span>
-          <h4 style="margin-top:8px">Contratos de RH e terceirização</h4>
-          <p>Revisão de contratos de terceirização, facilities e serviços recorrentes: escopo
-          comparável, preço por posto e regras de reajuste.</p>
+        <p>Análise de gargalos, custos, capacidade e produtividade, com plano de ação priorizado
+        e acompanhamento da implementação junto às áreas responsáveis.</p>
+      </li>
+      <li>
+        <span class="num">05</span>
+        <div>
+          <h3>Especialistas sob demanda</h3>
+          <div class="tags"><span>Projeto</span><span>Interino</span><span>Cobertura</span></div>
         </div>
-        <div class="it">
-          <span class="lbl g">Sustentação</span>
-          <h4 style="margin-top:8px">Sustentação</h4>
-          <p>Atualização periódica dos instrumentos, revisão das fontes e ajuste dos modelos
-          quando o escopo da operação muda.</p>
-        </div>
-      </div>
-    </div>
+        <p>Apoio especializado em momentos de maior demanda, projetos específicos, posições
+        temporárias ou necessidades que não justificam uma estrutura permanente. Alocação por
+        contrato de prestação de serviços, com escopo, entregáveis e carga horária definidos.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -576,156 +527,81 @@
   </div>
 </section>
 
-<!-- ============ instrumentos ============ -->
-<section id="instrumentos" style="background:var(--bg-2)">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <span class="lbl g">Instrumentos</span>
-        <h2 style="margin-top:10px">Instrumentos de decisão</h2>
-        <p>Modelos de gestão prontos para adoção: painéis em formato aberto, integrados à rotina
-        da equipe, com autonomia total após a entrega.</p>
-      </div>
-    </div>
-
-    <div class="inst">
-      <div class="c">
-        <span class="tp">Monitor de mercado</span>
-        <h4>Inteligência de preços</h4>
-        <p>Séries históricas de preço, volume e origem, consolidadas de fontes públicas e dos
-        dados da empresa, para antecipar custo.</p>
-        <div class="freq"><span>Atualização mensal</span><span>Formato aberto</span></div>
-      </div>
-      <div class="c">
-        <span class="tp">Painel de cotação</span>
-        <h4>Governança de compras</h4>
-        <p>Histórico centralizado de negociações, comparado à referência do período, com
-        rastreabilidade de cada decisão e auditoria em minutos.</p>
-        <div class="freq"><span>A cada negociação</span><span>Fonte: dados do cliente</span></div>
-      </div>
-      <div class="c">
-        <span class="tp">Relatório de mercado</span>
-        <h4>Leitura periódica para decisão</h4>
-        <p>O que mudou em preço, origem e disponibilidade no período, com fonte indicada, e a
-        implicação para as compras seguintes.</p>
-        <div class="freq"><span>Semanal ou mensal</span><span>Incluído na sustentação</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ método (abas) ============ -->
 <section id="metodo">
   <div class="wrap">
     <div class="head">
       <div>
-        <span class="lbl g">Método</span>
-        <h2 style="margin-top:10px">Etapas do trabalho</h2>
-        <p>O trabalho é organizado em quatro etapas, cada uma com entregável definido e
-        acordado no início do contrato.</p>
+        <span class="lbl g">Como atuamos</span>
+        <h2 style="margin-top:10px">Da oportunidade ao resultado.</h2>
+        <p>Um processo objetivo, com definição de linha de base, prioridades, execução e
+        validação do benefício gerado.</p>
       </div>
     </div>
 
-    <div class="tabs" role="tablist">
-      <button class="tab" role="tab" aria-selected="true" data-t="1"><span class="st">Etapa 01</span>Levantamento</button>
-      <button class="tab" role="tab" aria-selected="false" data-t="2"><span class="st">Etapa 02</span>Medição</button>
-      <button class="tab" role="tab" aria-selected="false" data-t="3"><span class="st">Etapa 03</span>Revisão</button>
-      <button class="tab" role="tab" aria-selected="false" data-t="4"><span class="st">Etapa 04</span>Implantação</button>
-    </div>
-
-    <div class="panel on" data-p="1">
-      <div>
-        <h3>Levantamento do processo atual</h3>
-        <p class="muted">Entrevistas com as áreas envolvidas e acompanhamento da rotina, para
-        registrar o fluxo como ele é executado, incluindo exceções e etapas não documentadas.</p>
+    <div class="steps">
+      <div class="st">
+        <span class="k">01 · Diagnóstico</span>
+        <h3>Entender</h3>
+        <p>Analisamos gastos, contratos, fornecedores, processos, indicadores e objetivos do
+        negócio.</p>
       </div>
-      <div class="fica">
-        <span class="lbl">O que fica deste passo</span>
-        <p style="margin:12px 0 0">Fluxograma do processo atual, com os pontos de decisão e o
-        responsável por cada um.</p>
+      <div class="st">
+        <span class="k">02 · Oportunidade</span>
+        <h3>Priorizar</h3>
+        <p>Dimensionamos potenciais ganhos e definimos as iniciativas com melhor relação entre
+        impacto, esforço e prazo.</p>
       </div>
-    </div>
-
-    <div class="panel" data-p="2">
-      <div>
-        <h3>Medição de tempo e custo</h3>
-        <p class="muted">Apuração de tempo, custo e retrabalho por etapa, com a fonte de cada
-        número, o período considerado e o denominador de cada indicador registrados.</p>
+      <div class="st">
+        <span class="k">03 · Execução</span>
+        <h3>Capturar</h3>
+        <p>Conduzimos análises, concorrências, negociações e planos de melhoria junto ao time
+        do cliente.</p>
       </div>
-      <div class="fica">
-        <span class="lbl">O que fica deste passo</span>
-        <p style="margin:12px 0 0">Planilha de medição por etapa, com fontes, período e
-        critérios de cálculo.</p>
-      </div>
-    </div>
-
-    <div class="panel" data-p="3">
-      <div>
-        <h3>Revisão do fluxo e dos critérios</h3>
-        <p class="muted">Proposta de fluxo revisado e registro por escrito dos critérios de
-        decisão: o que é comparado, com que dado e a partir de que diferença a escolha muda.</p>
-      </div>
-      <div class="fica">
-        <span class="lbl">O que fica deste passo</span>
-        <p style="margin:12px 0 0">Processo revisado e critérios documentados, com estimativa
-        de efeito sobre custo e prazo.</p>
-      </div>
-    </div>
-
-    <div class="panel" data-p="4">
-      <div>
-        <h3>Implantação dos entregáveis</h3>
-        <p class="muted">Entrega das planilhas e relatórios em uso, com as fontes definidas, a
-        frequência de atualização acordada e o responsável indicado para cada rotina, além da
-        documentação de manutenção.</p>
-      </div>
-      <div class="fica">
-        <span class="lbl">O que fica deste passo</span>
-        <p style="margin:12px 0 0">Entregáveis em operação e manual de atualização, com a
-        indicação do que fazer quando a fonte de dados muda.</p>
+      <div class="st">
+        <span class="k">04 · Validação</span>
+        <h3>Comprovar</h3>
+        <p>Comparamos o resultado ao baseline acordado e documentamos savings, impactos e
+        próximos passos.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ modelo comercial ============ -->
+<!-- ============ modelo de contratação ============ -->
 <section id="modelo" style="background:var(--bg-2)">
   <div class="wrap">
-    <div class="head">
+    <div class="modelo">
       <div>
-        <span class="lbl g">Como contratar</span>
-        <h2 style="margin-top:10px">Duas formas de contratar</h2>
-        <p>Por projeto, na sequência descrita abaixo, ou por alocação de profissional, nos
-        formatos da seção <a class="lnk" href="#profissionais">Profissionais por demanda</a>.
-        Em qualquer das duas, escopo, prazo e preço são definidos antes do início.</p>
-      </div>
-    </div>
-
-    <div class="duo">
-      <div class="f">
-        <span class="lbl">Fase 1 · Entrada</span>
-        <h3 style="margin:12px 0 10px">Diagnóstico e entrega inicial</h3>
-        <p class="muted sm">Definimos com o cliente o processo a ser tratado e o que será
-        medido, e entregamos a revisão do fluxo com os instrumentos correspondentes.</p>
-        <ul>
-          <li>Escopo, prazo e preço definidos por escrito</li>
-          <li>Entrega única, sem cronograma de fases</li>
-          <li>Decisão sobre continuidade ao final da entrega</li>
+        <span class="lbl g">Modelo de contratação</span>
+        <h2 style="margin-top:10px">Estrutura comercial definida pelo escopo do projeto.</h2>
+        <p class="lead">Cada projeto é contratado conforme escopo, prazo e nível de envolvimento da
+        M3V. Em negociações e iniciativas de redução de custo, a remuneração pode ser vinculada ao
+        resultado obtido. Em qualquer formato, escopo, prazo e preço são definidos antes do início.</p>
+        <ul class="mlist">
+          <li><i>&#10003;</i><div><b>Projeto fechado</b>Escopo, entregáveis e prazo definidos antes do início.
+            Decisão sobre continuidade ao final da entrega.</div></li>
+          <li><i>&#10003;</i><div><b>Consultoria recorrente</b>Acompanhamento contínuo de categorias, contratos
+            ou processos selecionados, com relatório periódico e atualização dos instrumentos.</div></li>
+          <li><i>&#10003;</i><div><b>Especialistas sob demanda</b>Reforço da equipe para frentes específicas ou
+            períodos determinados, por hora, dia, projeto ou período.</div></li>
+          <li><i>&#10003;</i><div><b>Success fee</b>Remuneração vinculada, total ou parcialmente, ao saving
+            apurado e validado pelo cliente.</div></li>
         </ul>
       </div>
-      <div class="f">
-        <span class="lbl">Fase 2 · Continuidade</span>
-        <h3 style="margin:12px 0 10px">Contrato mensal de sustentação</h3>
-        <p class="muted sm">Contratado após a entrega inicial. Mantém os entregáveis
-        atualizados e a leitura de mercado na periodicidade acordada.</p>
-        <ul>
-          <li>Relatório periódico de mercado</li>
-          <li>Análises sob demanda</li>
-          <li>Atualização dos entregáveis</li>
-        </ul>
-      </div>
+      <aside class="perf">
+        <span class="lbl" style="color:#C6A183">Remuneração por resultado</span>
+        <h3>Quando o cliente ganha, a M3V participa do resultado.</h3>
+        <p>Em projetos de negociação, sourcing estratégico e revisão contratual, o fee pode ser
+        associado a uma parcela do benefício econômico capturado, apurado sobre uma linha de base
+        acordada antes do início.</p>
+        <div class="ex">
+          <span class="lbl">Como funciona</span>
+          <p>Linha de base acordada <span>&rarr;</span> resultado validado <span>&rarr;</span>
+          saving apurado <span>&rarr;</span> fee de performance</p>
+        </div>
+      </aside>
     </div>
-
   </div>
 </section>
 
@@ -793,13 +669,13 @@
     <div>
       <h5>Serviços</h5>
       <ul>
-        <li><a href="#profissionais">Profissionais por demanda</a></li>
-        <li><a href="#servicos">Sourcing e contratos</a></li>
-        <li><a href="#servicos">Supply e suprimentos</a></li>
-        <li><a href="#servicos">Operações</a></li>
+        <li><a href="#servicos">Sourcing e procurement</a></li>
+        <li><a href="#servicos">Negociação de contratos</a></li>
+        <li><a href="#servicos">Supply e compras</a></li>
+        <li><a href="#servicos">Operações e performance</a></li>
+        <li><a href="#servicos">Especialistas sob demanda</a></li>
         <li><a href="#setores">Setores atendidos</a></li>
-        <li><a href="#instrumentos">Instrumentos de decisão</a></li>
-        <li><a href="#modelo">Sustentação mensal</a></li>
+        <li><a href="#modelo">Modelo de contratação</a></li>
       </ul>
     </div>
     <div>
@@ -808,7 +684,6 @@
         <li><a href="#experiencia">Experiência</a></li>
         <li><a href="#firma">A firma</a></li>
         <li><a href="#metodo">Método</a></li>
-        <li><a href="#instrumentos">O que fica com o cliente</a></li>
         <li><a href="#modelo">Como contratar</a></li>
       </ul>
     </div>
@@ -852,17 +727,6 @@
     if(menu.classList.contains('open') && !menu.contains(e.target) && e.target!==burger) setMenu(false);
   });
   window.addEventListener('resize',function(){ if(window.innerWidth>MOB) setMenu(false); });
-  // abas do método
-  var tabs=document.querySelectorAll('.tab');
-  tabs.forEach(function(t){
-    t.addEventListener('click',function(){
-      tabs.forEach(function(x){ x.setAttribute('aria-selected','false'); });
-      t.setAttribute('aria-selected','true');
-      document.querySelectorAll('.panel').forEach(function(p){
-        p.classList.toggle('on', p.dataset.p===t.dataset.t);
-      });
-    });
-  });
 
 // e-mail: copia o endereço para a área de transferência; o mailto continua funcionando
 // onde há cliente de e-mail configurado. Botão "Copiar e-mail" só copia.
